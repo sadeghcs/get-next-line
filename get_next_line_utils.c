@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/* By: snasiri <snasiri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snasiri <snasiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:04:56 by snasiri           #+#    #+#             */
 /*   Updated: 2025/05/29 20:35:50 by snasiri          ###   ########.fr       */
