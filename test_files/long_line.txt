@@ -1,0 +1,1 @@
+This is a very long line without any newline characters. It should test how your buffer handles lines that exceed the buffer size if your implementation relies on a buffer. Make sure this goes on and on for a while to ensure a proper test. Keep adding more and more text to ensure it’s long enough to push boundaries.
