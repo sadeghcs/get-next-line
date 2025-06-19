@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snasiri <snasiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:05:05 by snasiri           #+#    #+#             */
-/*   Updated: 2025/05/30 11:48:08 by snasiri          ###   ########.fr       */
+/*   Updated: 2025/05/30 11:47:52 by snasiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+#ifndef MAX_FD
+# define MAX_FD 1024
+#endif
 
 static char	*extract_line(char *buffer)
 {
@@ -45,10 +49,10 @@ static char	*update_buffer(char *buffer)
 	int		i;
 	int		j;
 
-	if (!buffer)
-		return (NULL);
 	i = 0;
 	j = 0;
+	if (!buffer)
+		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i++])
@@ -99,26 +103,21 @@ static char	*read_from_fd(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[MAX_FD];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		if (buffer)
-			free(buffer);
-		buffer = NULL;
+	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
-	buffer = read_from_fd(fd, buffer);
-	if (!buffer)
+	buffer[fd] = read_from_fd(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = extract_line(buffer);
-	buffer = update_buffer(buffer);
+	line = extract_line(buffer[fd]);
+	buffer[fd] = update_buffer(buffer[fd]);
 	if (!line)
 	{
-		if (buffer)
-			free(buffer);
-		buffer = NULL;
+		if (buffer[fd])
+			free(buffer[fd]);
+		buffer[fd] = NULL;
 	}
 	return (line);
 }
