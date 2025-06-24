@@ -58,6 +58,7 @@ void test_invalid_fd()
 
 int main()
 {
+	//tests for all
 	// test_invalid_fd();
 	// test_file("test_files/empty.txt");
 	// test_file("test_files/only_nl.txt");
@@ -68,19 +69,19 @@ int main()
 	// test_file("test_files/mixed.txt");
 	// test_file("test_files/multiple_nl.txt");
 	// test_file("test_files/pride_and_prejudice.txt"); 
-    char *line;
-    int fd = open("test_files/mixed.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		perror("open failed");
-		return (0);
-	}
-    for (int i = 0; i < 100; i++)
-    {
-        line = get_next_line(fd);
-        printf("%s", line);
-    }
 
-	
-	return (0);
+	//test for bonus part
+	// char *line;
+	// int fd = open("test_files/mixed.txt", O_RDONLY);
+	// if (fd == -1)
+	// {
+	// 	perror("open failed");
+	// 	return (0);
+	// }
+        //for (int i = 0; i < 100; i++)
+	//{
+ 	//      line = get_next_line(fd);
+ 	//      printf("%s", line);
+ 	//}
+	// return (0);
 }
